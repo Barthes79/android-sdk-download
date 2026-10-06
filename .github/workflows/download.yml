@@ -2,10 +2,12 @@ name: Download Android SDK Tools
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   download:
     runs-on: windows-latest
+
     steps:
       - name: Download Android Command Line Tools
         shell: powershell
