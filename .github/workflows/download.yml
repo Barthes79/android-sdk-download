@@ -1,1 +1,21 @@
+name: Download Android SDK Tools
 
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: windows-latest
+    steps:
+      - name: Download Android Command Line Tools
+        shell: powershell
+        run: |
+          $url = "https://dl.google.com/android/repository/commandlinetools-win-15859902_latest.zip"
+          Invoke-WebRequest -Uri $url -OutFile "commandlinetools-win-15859902_latest.zip"
+
+      - name: Upload SDK Tools
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-command-line-tools
+          path: commandlinetools-win-15859902_latest.zip
+          retention-days: 1
